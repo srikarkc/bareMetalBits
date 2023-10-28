@@ -6,10 +6,10 @@
 
 _start:
 
-pushl $3	# pushing the second argument to the stack - i.e. the power
+pushl $4	# pushing the second argument to the stack - i.e. the power
 pushl $2	# pushing the first argument - i.e the base number
 call power
-addl $8, %esp
+movl %eax, %ebx
 movl $1, %eax
 int $0x80
 
@@ -28,9 +28,9 @@ power_loop_start:
 cmpl $1, %ecx
 je end_power
 movl -4(%ebp), %eax
-imul %ebx, %eax
+imul %ebx, %eax	# Does integer multiplication
 movl %eax, -4(%ebp)
-decl %ecx
+decl %ecx	# Decrements the register by 1
 jmp power_loop_start
 
 end_power:
