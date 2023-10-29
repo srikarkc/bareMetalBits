@@ -23,7 +23,7 @@ je end_factorial
 decl %eax
 pushl %eax			# Push it for our next call to factorial
 call factorial
-popl %eax
+popl %ebx
 incl %ebx
 imul %ebx, %eax
 
